@@ -110,6 +110,9 @@
     <None Include="WinkleBell2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Drum\DrumBeatRock.mp3" />
+    <Content Include="Assets\Guitar\sample1.mp3" />
+    <Content Include="Assets\Guitar\sample2.mp3" />
     <Content Include="Assets\Piano\sound0.mp3" />
     <Content Include="Assets\Piano\sound1.mp3" />
     <Content Include="Assets\Piano\sound10.mp3" />

@@ -44,6 +44,7 @@ namespace WinkleBell2
         private Boolean isAllDevicesEnumerated;
 
         private bool isActive = false;
+        private bool PlayisActive = false;
         public static MainPage Current;
 
         private CancellationTokenSource ReadCancellationTokenSource;
@@ -68,9 +69,26 @@ namespace WinkleBell2
             watchersSuspended = false;
 
             isAllDevicesEnumerated = false;
-            Uri pathUri = new Uri("ms-appx:///Assets/Piano/sound1.mp3");
+
+            Uri pathUri = new Uri("ms-appx:///Assets/Drum/DrumBeatRock.mp3");
 
             mediaPlayer.Source = MediaSource.CreateFromUri(pathUri);
+            mediaPlayer.MediaPlayer.Volume = 0.5;
+            mediaPlayer.MediaPlayer.IsLoopingEnabled = true;
+
+            Uri pathUri2 = new Uri("ms-appx:///Assets/Guitar/sample1.mp3");
+
+            mediaPlayer2.Source = MediaSource.CreateFromUri(pathUri2);
+            mediaPlayer2.MediaPlayer.Volume = 0.5;
+            mediaPlayer2.MediaPlayer.IsLoopingEnabled = true;
+
+            Uri pathUri3 = new Uri("ms-appx:///Assets/Drum/DrumBeatRock.mp3");
+
+            mediaPlayer3.Source = MediaSource.CreateFromUri(pathUri3);
+            mediaPlayer3.MediaPlayer.Volume = 0.5;
+            mediaPlayer3.MediaPlayer.IsLoopingEnabled = true;
+
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs eventArgs)
         {
@@ -123,7 +141,27 @@ namespace WinkleBell2
             {
                 Debug.WriteLine(ex.Message);
             }
+        }
+        private void StartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button Btn = sender as Button;
 
+            if((string)Btn.Content  == "Start")
+            {
+                PlayisActive = true;
+                Btn.Content = "Stop";
+                mediaPlayer.MediaPlayer.Play();
+                mediaPlayer2.MediaPlayer.Play();
+                mediaPlayer3.MediaPlayer.Play();
+            }
+            else
+            {
+                PlayisActive = false;
+                Btn.Content = "Start";
+                mediaPlayer.MediaPlayer.Pause();
+                mediaPlayer2.MediaPlayer.Pause();
+                mediaPlayer3.MediaPlayer.Pause();
+            }
         }
 
         private void SetButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -454,43 +492,8 @@ namespace WinkleBell2
             {
                 var Str = DataReaderObject.ReadString(bytesRead);
                 Debug.Write(Str);
-             //   PlayingSound(CheckReadString(Str));
+                //   PlayingSound(CheckReadString(Str));
             }
-        }
-        private int CheckReadString(string str)
-        {
-            if (str.Contains("15"))
-                return 15;
-            else if (str.Contains("14"))
-                return 14;
-            else if (str.Contains("13"))
-                return 13;
-            else if (str.Contains("12"))
-                return 12;
-            else if (str.Contains("11"))
-                return 11;
-            else if (str.Contains("10"))
-                return 10;
-            else if (str.Contains("9"))
-                return 9;
-            else if (str.Contains("8"))
-                return 8;
-            else if (str.Contains("7"))
-                return 7;
-            else if (str.Contains("6"))
-                return 6;
-            else if (str.Contains("5"))
-                return 5;
-            else if (str.Contains("4"))
-                return 4;
-            else if (str.Contains("3"))
-                return 3;
-            else if (str.Contains("2"))
-                return 2;
-            else if (str.Contains("1"))
-                return 1;
-            else
-                return 0;
         }
 
         private void CancelReadTask()

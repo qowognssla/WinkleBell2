@@ -14,21 +14,27 @@
             <RowDefinition  Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Pivot Grid.Row="1" Margin="0,10,0,0">
+        <Pivot Grid.Row="1" >
             <PivotItem Header="Play Mode">
-                <ListView>
-                    <TextBlock Text="Back Sound"  FontSize="22" FontWeight="Bold" Margin="0,15,0,0" Foreground="Gray"/>
-                    <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Back Sound"  FontSize="22" FontWeight="Bold"  Foreground="Gray" />
+                    <Grid Grid.Row="1" Margin="10" BorderThickness="2" BorderBrush="Gray">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <MediaPlayerElement Grid.Row="0" x:Name="mediaPlayer"  AreTransportControlsEnabled="True"/>
+                        <MediaPlayerElement Grid.Row="0" x:Name="mediaPlayer" AreTransportControlsEnabled="True"/>
                         <MediaPlayerElement Grid.Row="1" x:Name="mediaPlayer2" AreTransportControlsEnabled="True"/>
                         <MediaPlayerElement Grid.Row="2" x:Name="mediaPlayer3"   AreTransportControlsEnabled="True"/>
                     </Grid>
-                </ListView>
+                    <Button Grid.Row="2" x:Name="StartBtn" Content="Start" HorizontalAlignment="Center" Width="100" Height="50" Click="StartBtn_Click"/>
+                </Grid>
             </PivotItem>
             <PivotItem Header="Settings">
                 <ScrollViewer>
@@ -58,7 +64,7 @@
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
-                          </Grid>
+                        </Grid>
                         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
                             <Button Grid.Row="1" Grid.Column="1" x:Name="ButtonConnectToDevice" Content="Connect" VerticalAlignment="Top" Margin="0,0,20,0" Click="ConnectBtn_Clicked" FontWeight="Bold" HorizontalAlignment="Center"/>
                             <Button Grid.Row="2" Grid.Column="1" x:Name="ButtonDisconnectFromDevice" Content="Disconnect" VerticalAlignment="Top" Click="DisconnectBtn_Clicked" FontWeight="Bold" HorizontalAlignment="Center"/>
@@ -67,6 +73,6 @@
                     </Grid>
                 </ScrollViewer>
             </PivotItem>
-       </Pivot>
+        </Pivot>
     </Grid>
 </Page>
