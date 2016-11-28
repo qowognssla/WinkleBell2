@@ -70,7 +70,7 @@ namespace WinkleBell2
 
             isAllDevicesEnumerated = false;
 
-            Uri pathUri = new Uri("ms-appx:///Assets/Drum/DrumBeatRock.mp3");
+            Uri pathUri = new Uri("ms-appx:///Assets/Drum/DrumBeat1.mp3");
 
             mediaPlayer.Source = MediaSource.CreateFromUri(pathUri);
             mediaPlayer.MediaPlayer.Volume = 0.5;
