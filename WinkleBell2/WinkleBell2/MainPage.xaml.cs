@@ -164,27 +164,6 @@ namespace WinkleBell2
             EventHandlerForDevice.Current.OnDeviceClose = null;
         }
 
-        /*          Not Used in this Project
-        private async void PlayingSound(int Index, double Volume = 0.01)
-        {
-            MediaElement Sound = new MediaElement();
-
-            //string Mode = ((TextBlock)SoundModeCombo.SelectedItem).Text;
-            try
-            {
-                Windows.Storage.StorageFolder folder = await Package.Current.InstalledLocation.GetFolderAsync("Assets\\" + "Piano");
-                Windows.Storage.StorageFile file = await folder.GetFileAsync("sound" + Index + ".mp3");
-                var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-                Sound.SetSource(stream, file.ContentType);
-                Sound.Volume = Volume;
-                Sound.Play();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
-        }
-        */
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
             Button Btn = sender as Button;
