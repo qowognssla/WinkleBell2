@@ -110,26 +110,9 @@
     <None Include="WinkleBell2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Drum\DrumBeat1.mp3" />
-    <Content Include="Assets\Drum\DrumBeatRock.mp3" />
-    <Content Include="Assets\Guitar\sample1.mp3" />
-    <Content Include="Assets\Guitar\sample2.mp3" />
-    <Content Include="Assets\Piano\sound0.mp3" />
-    <Content Include="Assets\Piano\sound1.mp3" />
-    <Content Include="Assets\Piano\sound10.mp3" />
-    <Content Include="Assets\Piano\sound11.mp3" />
-    <Content Include="Assets\Piano\sound12.mp3" />
-    <Content Include="Assets\Piano\sound13.mp3" />
-    <Content Include="Assets\Piano\sound14.mp3" />
-    <Content Include="Assets\Piano\sound15.mp3" />
-    <Content Include="Assets\Piano\sound2.mp3" />
-    <Content Include="Assets\Piano\sound3.mp3" />
-    <Content Include="Assets\Piano\sound4.mp3" />
-    <Content Include="Assets\Piano\sound5.mp3" />
-    <Content Include="Assets\Piano\sound6.mp3" />
-    <Content Include="Assets\Piano\sound7.mp3" />
-    <Content Include="Assets\Piano\sound8.mp3" />
-    <Content Include="Assets\Piano\sound9.mp3" />
+    <Content Include="Assets\Drum\beat0.mp3" />
+    <Content Include="Assets\Drum\beat1.mp3" />
+    <Content Include="Assets\Drum\beat2.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

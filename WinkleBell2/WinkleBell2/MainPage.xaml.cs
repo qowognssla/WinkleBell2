@@ -13,6 +13,7 @@ using Windows.Devices.SerialCommunication;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -59,6 +60,7 @@ namespace WinkleBell2
             this.InitializeComponent();
             Initialize();
         }
+
         private void Initialize()
         {
             Current = this;
@@ -67,33 +69,73 @@ namespace WinkleBell2
             mapDeviceWatchersToDeviceSelector = new Dictionary<DeviceWatcher, String>();
             watchersStarted = false;
             watchersSuspended = false;
-
             isAllDevicesEnumerated = false;
 
-            Uri pathUri = new Uri("ms-appx:///Assets/Drum/DrumBeat1.mp3");
 
+            Uri pathUri = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox.SelectedItem).Text + ".mp3");
             mediaPlayer.Source = MediaSource.CreateFromUri(pathUri);
-            mediaPlayer.MediaPlayer.Volume = 0.5;
-            mediaPlayer.MediaPlayer.IsLoopingEnabled = true;
-
-            Uri pathUri2 = new Uri("ms-appx:///Assets/Guitar/sample1.mp3");
-
+            Uri pathUri2 = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox1.SelectedItem).Text + ".mp3");
             mediaPlayer2.Source = MediaSource.CreateFromUri(pathUri2);
-            mediaPlayer2.MediaPlayer.Volume = 0.5;
-            mediaPlayer2.MediaPlayer.IsLoopingEnabled = true;
-
-            Uri pathUri3 = new Uri("ms-appx:///Assets/Drum/DrumBeatRock.mp3");
-
+            Uri pathUri3 = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox2.SelectedItem).Text + ".mp3");
             mediaPlayer3.Source = MediaSource.CreateFromUri(pathUri3);
-            mediaPlayer3.MediaPlayer.Volume = 0.5;
+
+            mediaPlayer.MediaPlayer.Volume = 0;
+            mediaPlayer.MediaPlayer.IsLoopingEnabled = true;
+            mediaPlayer.MediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
+
+            mediaPlayer2.MediaPlayer.Volume = 0;
+            mediaPlayer2.MediaPlayer.IsLoopingEnabled = true;
+            mediaPlayer2.MediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged2;
+
+            mediaPlayer3.MediaPlayer.Volume = 0;
             mediaPlayer3.MediaPlayer.IsLoopingEnabled = true;
-
-
+            mediaPlayer3.MediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged3;
         }
+
+        private void MediaPlayer_VolumeChanged(MediaPlayer sender, object args)
+        {
+            if (sender.Volume == 0)
+            {
+                sender.Pause();
+                sender.PlaybackSession.Position = new TimeSpan(0);
+            }
+            else if(sender.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
+            {
+                sender.PlaybackSession.Position = new TimeSpan(0);
+                sender.Play();
+            }
+        }
+        private void MediaPlayer_VolumeChanged2(MediaPlayer sender, object args)
+        {
+            if (sender.Volume == 0)
+            {
+                sender.Pause();
+                sender.PlaybackSession.Position = new TimeSpan(0);
+            }
+            else if (sender.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
+            {
+                sender.PlaybackSession.Position = new TimeSpan(0);
+                sender.Play();
+            }
+        }
+        private void MediaPlayer_VolumeChanged3(MediaPlayer sender, object args)
+        {
+            if (sender.Volume == 0)
+            {
+                sender.Pause();
+                sender.PlaybackSession.Position = new TimeSpan(0);
+            }
+            else if (sender.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
+            {
+                sender.PlaybackSession.Position = new TimeSpan(0);
+                sender.Play();
+            }
+        }
+
+
         protected override void OnNavigatedTo(NavigationEventArgs eventArgs)
         {
-            if (EventHandlerForDevice.Current.IsDeviceConnected || (EventHandlerForDevice.Current.IsEnabledAutoReconnect
-                && EventHandlerForDevice.Current.DeviceInformation != null))
+            if (EventHandlerForDevice.Current.IsDeviceConnected || (EventHandlerForDevice.Current.IsEnabledAutoReconnect && EventHandlerForDevice.Current.DeviceInformation != null))
             {
                 UpdateConnectDisconnectButtonsAndList(false);
 
@@ -122,7 +164,7 @@ namespace WinkleBell2
             EventHandlerForDevice.Current.OnDeviceClose = null;
         }
 
-
+        /*          Not Used in this Project
         private async void PlayingSound(int Index, double Volume = 0.01)
         {
             MediaElement Sound = new MediaElement();
@@ -142,14 +184,16 @@ namespace WinkleBell2
                 Debug.WriteLine(ex.Message);
             }
         }
+        */
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
             Button Btn = sender as Button;
 
-            if((string)Btn.Content  == "Start")
+            if ((string)Btn.Content == "Start")
             {
                 PlayisActive = true;
                 Btn.Content = "Stop";
+
                 mediaPlayer.MediaPlayer.Play();
                 mediaPlayer2.MediaPlayer.Play();
                 mediaPlayer3.MediaPlayer.Play();
@@ -158,9 +202,36 @@ namespace WinkleBell2
             {
                 PlayisActive = false;
                 Btn.Content = "Start";
+
                 mediaPlayer.MediaPlayer.Pause();
                 mediaPlayer2.MediaPlayer.Pause();
                 mediaPlayer3.MediaPlayer.Pause();
+                mediaPlayer.MediaPlayer.PlaybackSession.Position = new TimeSpan(0);
+                mediaPlayer2.MediaPlayer.PlaybackSession.Position = new TimeSpan(0);
+                mediaPlayer3.MediaPlayer.PlaybackSession.Position = new TimeSpan(0);
+            }
+        }
+        private void mediaCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox box = sender as ComboBox;
+
+            if (mediaPlayer != null && mediaPlayer2 != null && mediaPlayer3 != null)
+            {
+                if (box.Name == "mediaCombobox")
+                {
+                    Uri pathUri = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox.SelectedItem).Text + ".mp3");
+                    mediaPlayer.Source = MediaSource.CreateFromUri(pathUri);
+                }
+                if (box.Name == "mediaCombobox2")
+                {
+                    Uri pathUri2 = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox1.SelectedItem).Text + ".mp3");
+                    mediaPlayer2.Source = MediaSource.CreateFromUri(pathUri2);
+                }
+                if (box.Name == "mediaCombobox3")
+                {
+                    Uri pathUri3 = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox2.SelectedItem).Text + ".mp3");
+                    mediaPlayer3.Source = MediaSource.CreateFromUri(pathUri3);
+                }
             }
         }
 
@@ -552,28 +623,28 @@ namespace WinkleBell2
         {
 
             Task<UInt32> storeAsyncTask;
-/*
-            if ((WriteBytesInputValue.Text.Length != 0))
-            {
-                char[] buffer = new char[WriteBytesInputValue.Text.Length];
-                WriteBytesInputValue.Text.CopyTo(0, buffer, 0, WriteBytesInputValue.Text.Length);
-                String InputString = new string(buffer);
-                DataWriteObject.WriteString(InputString);
-                WriteBytesInputValue.Text = "";
+            /*
+                        if ((WriteBytesInputValue.Text.Length != 0))
+                        {
+                            char[] buffer = new char[WriteBytesInputValue.Text.Length];
+                            WriteBytesInputValue.Text.CopyTo(0, buffer, 0, WriteBytesInputValue.Text.Length);
+                            String InputString = new string(buffer);
+                            DataWriteObject.WriteString(InputString);
+                            WriteBytesInputValue.Text = "";
 
-                lock (WriteCancelLock)
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-                    storeAsyncTask = DataWriteObject.StoreAsync().AsTask(cancellationToken);
-                }
+                            lock (WriteCancelLock)
+                            {
+                                cancellationToken.ThrowIfCancellationRequested();
+                                storeAsyncTask = DataWriteObject.StoreAsync().AsTask(cancellationToken);
+                            }
 
-                UInt32 bytesWritten = await storeAsyncTask;
-                if (bytesWritten > 0)
-                {
-                    Debug.Write(InputString.Substring(0, (int)bytesWritten) + '\n');
-                }
-            }
-            */
+                            UInt32 bytesWritten = await storeAsyncTask;
+                            if (bytesWritten > 0)
+                            {
+                                Debug.Write(InputString.Substring(0, (int)bytesWritten) + '\n');
+                            }
+                        }
+                        */
         }
         private void CancelWriteTask()
         {

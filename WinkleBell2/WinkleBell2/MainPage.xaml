@@ -16,25 +16,51 @@
         </Grid.RowDefinitions>
         <Pivot Grid.Row="1" >
             <PivotItem Header="Play Mode">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Back Sound"  FontSize="22" FontWeight="Bold"  Foreground="Gray" />
-                    <Grid Grid.Row="1" Margin="10" BorderThickness="2" BorderBrush="Gray">
+                <ScrollViewer>
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <MediaPlayerElement Grid.Row="0" x:Name="mediaPlayer" AreTransportControlsEnabled="True"/>
-                        <MediaPlayerElement Grid.Row="1" x:Name="mediaPlayer2" AreTransportControlsEnabled="True"/>
-                        <MediaPlayerElement Grid.Row="2" x:Name="mediaPlayer3"   AreTransportControlsEnabled="True"/>
+                        <TextBlock Grid.Row="0" Text="Back Sound"  FontSize="22" FontWeight="Bold"  Foreground="Gray" />
+                        <Grid Grid.Row="1" Margin="10" BorderThickness="2" BorderBrush="Gray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ComboBox Grid.Row="0" x:Name="mediaCombobox" HorizontalAlignment="Stretch" Margin="10,5" SelectedIndex="0" SelectionChanged="mediaCombobox_SelectionChanged">
+                                <TextBlock Text="beat0"/>
+                                <TextBlock Text="beat1"/>
+                                <TextBlock Text="beat2"/>
+                            </ComboBox>
+                            <MediaPlayerElement Grid.Row="1" x:Name="mediaPlayer" AreTransportControlsEnabled="True"/>
+                            <ComboBox Grid.Row="2" x:Name="mediaCombobox1" HorizontalAlignment="Stretch" Margin="10,5" SelectedIndex="1" SelectionChanged="mediaCombobox_SelectionChanged">
+                                <TextBlock Text="beat0"/>
+                                <TextBlock Text="beat1"/>
+                                <TextBlock Text="beat2"/>
+                            </ComboBox>
+                            <MediaPlayerElement Grid.Row="3" x:Name="mediaPlayer2" AreTransportControlsEnabled="True"/>
+                            <ComboBox Grid.Row="4" x:Name="mediaCombobox2" HorizontalAlignment="Stretch" Margin="10,5" SelectedIndex="2" SelectionChanged="mediaCombobox_SelectionChanged">
+                                <TextBlock Text="beat0"/>
+                                <TextBlock Text="beat1"/>
+                                <TextBlock Text="beat2"/>
+                            </ComboBox>
+                            <MediaPlayerElement Grid.Row="5" x:Name="mediaPlayer3"   AreTransportControlsEnabled="True"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+
+                        </Grid>
+                        <Button Grid.Row="3" x:Name="StartBtn" Content="Start" HorizontalAlignment="Center" Width="100" Height="50" Click="StartBtn_Click"/>
                     </Grid>
-                    <Button Grid.Row="2" x:Name="StartBtn" Content="Start" HorizontalAlignment="Center" Width="100" Height="50" Click="StartBtn_Click"/>
-                </Grid>
+                </ScrollViewer>
             </PivotItem>
             <PivotItem Header="Settings">
                 <ScrollViewer>
