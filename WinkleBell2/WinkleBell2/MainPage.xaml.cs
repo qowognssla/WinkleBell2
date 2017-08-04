@@ -79,15 +79,15 @@ namespace WinkleBell2
             Uri pathUri3 = new Uri("ms-appx:///Assets/Drum/" + ((TextBlock)mediaCombobox2.SelectedItem).Text + ".mp3");
             mediaPlayer3.Source = MediaSource.CreateFromUri(pathUri3);
 
-            mediaPlayer.MediaPlayer.Volume = 20;
+            mediaPlayer.MediaPlayer.Volume = 0.4;
             mediaPlayer.MediaPlayer.IsLoopingEnabled = true;
             mediaPlayer.MediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged;
 
-            mediaPlayer2.MediaPlayer.Volume = 20;
+            mediaPlayer2.MediaPlayer.Volume = 0.4;
             mediaPlayer2.MediaPlayer.IsLoopingEnabled = true;
             mediaPlayer2.MediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged2;
 
-            mediaPlayer3.MediaPlayer.Volume = 20;
+            mediaPlayer3.MediaPlayer.Volume = 0.4;
             mediaPlayer3.MediaPlayer.IsLoopingEnabled = true;
             mediaPlayer3.MediaPlayer.VolumeChanged += MediaPlayer_VolumeChanged3;
         }
