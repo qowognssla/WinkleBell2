@@ -23,6 +23,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="Back Sound"  FontSize="22" FontWeight="Bold"  Foreground="Gray" />
                         <Grid Grid.Row="1" Margin="10" BorderThickness="2" BorderBrush="Gray">
@@ -58,7 +59,15 @@
                         <Grid Grid.Row="2">
 
                         </Grid>
-                        <Button Grid.Row="3" x:Name="StartBtn" Content="Start" HorizontalAlignment="Center" Width="100" Height="50" Click="StartBtn_Click"/>
+                        <Button Grid.Row="4" x:Name="StartBtn" Content="Start" HorizontalAlignment="Center" Width="100" Height="50" Click="StartBtn_Click"/>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal">
+                            <TextBlock Text="Sound Mode" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
+                            <ComboBox Width="200" SelectedIndex="0" x:Name="SoundModeCombo" DataContextChanged="SoundModeCombo_DataContextChanged" SelectionChanged="SoundModeCombo_SelectionChanged">
+                                <TextBlock Text="Piano"/>
+                                <TextBlock Text="Bell"/>
+                                <TextBlock Text="ArticPiano"/>
+                            </ComboBox>
+                        </StackPanel>
                     </Grid>
                 </ScrollViewer>
             </PivotItem>

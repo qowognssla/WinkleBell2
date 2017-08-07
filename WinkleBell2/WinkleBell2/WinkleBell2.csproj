@@ -17,6 +17,9 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>WinkleBell2_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -111,6 +114,38 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\alarm.svg" />
+    <Content Include="Assets\ArticPiano\sound0.mp3" />
+    <Content Include="Assets\ArticPiano\sound1.mp3" />
+    <Content Include="Assets\ArticPiano\sound10.mp3" />
+    <Content Include="Assets\ArticPiano\sound11.mp3" />
+    <Content Include="Assets\ArticPiano\sound12.mp3" />
+    <Content Include="Assets\ArticPiano\sound13.mp3" />
+    <Content Include="Assets\ArticPiano\sound14.mp3" />
+    <Content Include="Assets\ArticPiano\sound15.mp3" />
+    <Content Include="Assets\ArticPiano\sound2.mp3" />
+    <Content Include="Assets\ArticPiano\sound3.mp3" />
+    <Content Include="Assets\ArticPiano\sound4.mp3" />
+    <Content Include="Assets\ArticPiano\sound5.mp3" />
+    <Content Include="Assets\ArticPiano\sound6.mp3" />
+    <Content Include="Assets\ArticPiano\sound7.mp3" />
+    <Content Include="Assets\ArticPiano\sound8.mp3" />
+    <Content Include="Assets\ArticPiano\sound9.mp3" />
+    <Content Include="Assets\Bell\sound0.mp3" />
+    <Content Include="Assets\Bell\sound1.mp3" />
+    <Content Include="Assets\Bell\sound10.mp3" />
+    <Content Include="Assets\Bell\sound11.mp3" />
+    <Content Include="Assets\Bell\sound12.mp3" />
+    <Content Include="Assets\Bell\sound13.mp3" />
+    <Content Include="Assets\Bell\sound14.mp3" />
+    <Content Include="Assets\Bell\sound15.mp3" />
+    <Content Include="Assets\Bell\sound2.mp3" />
+    <Content Include="Assets\Bell\sound3.mp3" />
+    <Content Include="Assets\Bell\sound4.mp3" />
+    <Content Include="Assets\Bell\sound5.mp3" />
+    <Content Include="Assets\Bell\sound6.mp3" />
+    <Content Include="Assets\Bell\sound7.mp3" />
+    <Content Include="Assets\Bell\sound8.mp3" />
+    <Content Include="Assets\Bell\sound9.mp3" />
     <Content Include="Assets\Drum\beat0.mp3" />
     <Content Include="Assets\Drum\beat1.mp3" />
     <Content Include="Assets\Drum\beat2.mp3" />
@@ -119,6 +154,22 @@
     <Content Include="Assets\NewStoreLogo.scale-150.png" />
     <Content Include="Assets\NewStoreLogo.scale-200.png" />
     <Content Include="Assets\NewStoreLogo.scale-400.png" />
+    <Content Include="Assets\Piano\sound0.mp3" />
+    <Content Include="Assets\Piano\sound1.mp3" />
+    <Content Include="Assets\Piano\sound10.mp3" />
+    <Content Include="Assets\Piano\sound11.mp3" />
+    <Content Include="Assets\Piano\sound12.mp3" />
+    <Content Include="Assets\Piano\sound13.mp3" />
+    <Content Include="Assets\Piano\sound14.mp3" />
+    <Content Include="Assets\Piano\sound15.mp3" />
+    <Content Include="Assets\Piano\sound2.mp3" />
+    <Content Include="Assets\Piano\sound3.mp3" />
+    <Content Include="Assets\Piano\sound4.mp3" />
+    <Content Include="Assets\Piano\sound5.mp3" />
+    <Content Include="Assets\Piano\sound6.mp3" />
+    <Content Include="Assets\Piano\sound7.mp3" />
+    <Content Include="Assets\Piano\sound8.mp3" />
+    <Content Include="Assets\Piano\sound9.mp3" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
     <Content Include="Assets\SplashScreen.scale-150.png" />

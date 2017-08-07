@@ -14,6 +14,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -54,6 +55,8 @@ namespace WinkleBell2
         private Object ReadCancelLock = new Object();
         DataWriter DataWriteObject = null;
         DataReader DataReaderObject = null;
+
+        private MediaPlayer[] Sounds;
 
         public MainPage()
         {
@@ -99,7 +102,7 @@ namespace WinkleBell2
                 sender.Pause();
                 sender.PlaybackSession.Position = new TimeSpan(0);
             }
-            else if(sender.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
+            else if (sender.PlaybackSession.PlaybackState != MediaPlaybackState.Playing)
             {
                 sender.PlaybackSession.Position = new TimeSpan(0);
                 sender.Play();
@@ -153,6 +156,17 @@ namespace WinkleBell2
             StartDeviceWatchers();
 
             DeviceListSource.Source = listOfDevices;
+
+            Sounds = new MediaPlayer[16];
+
+            string Mode = ((TextBlock)SoundModeCombo.SelectedItem).Text;
+
+            for (int i = 0; i < Sounds.Length; i++)
+            {
+                Sounds[i] = new MediaPlayer();
+                Uri uri = new Uri("ms-appx:///Assets/" + Mode + "/sound" + i + ".mp3");
+                Sounds[i].Source = MediaSource.CreateFromUri(uri);
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs eventArgs)
@@ -190,6 +204,21 @@ namespace WinkleBell2
                 mediaPlayer3.MediaPlayer.PlaybackSession.Position = new TimeSpan(0);
             }
         }
+
+        private void PlayingSound(int Index)
+        {
+            try
+            {
+                Sounds[Index].PlaybackSession.Position = new TimeSpan(0);
+                Sounds[Index].Play();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+        }
+
         private void mediaCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
@@ -216,7 +245,8 @@ namespace WinkleBell2
 
         private void SetButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            WriteButton_Click();
+            //WriteButton_Click();
+            PlayingSound(0);
         }
 
         private async void ConnectBtn_Clicked(Object sender, RoutedEventArgs eventArgs)
@@ -440,7 +470,7 @@ namespace WinkleBell2
                 EventHandlerForDevice.Current.Device.StopBits = SerialStopBitCount.One;
                 EventHandlerForDevice.Current.Device.Handshake = SerialHandshake.None;
                 EventHandlerForDevice.Current.Device.DataBits = 8;
-                EventHandlerForDevice.Current.Device.BaudRate = 9600;
+                EventHandlerForDevice.Current.Device.BaudRate = 115200;
                 ResetReadCancellationTokenSource();
                 ResetWriteCancellationTokenSource();
 
@@ -480,7 +510,7 @@ namespace WinkleBell2
         {
             ButtonConnectToDevice.IsEnabled = enableConnectButton;
             ButtonDisconnectFromDevice.IsEnabled = !ButtonConnectToDevice.IsEnabled;
-            SetBtn.IsEnabled = !ButtonConnectToDevice.IsEnabled;
+           // SetBtn.IsEnabled = !ButtonConnectToDevice.IsEnabled;
             ConnectDevices.IsEnabled = ButtonConnectToDevice.IsEnabled;
         }
 
@@ -542,7 +572,7 @@ namespace WinkleBell2
             {
                 var Str = DataReaderObject.ReadString(bytesRead);
                 Debug.Write(Str);
-                //   PlayingSound(CheckReadString(Str));
+                PlayingSound(CheckReadString(Str));
             }
         }
 
@@ -646,6 +676,62 @@ namespace WinkleBell2
         }
         private void NotifyWriteCancelingTask()
         {
+        }
+
+        private int CheckReadString(string str)
+        {
+            Debug.WriteLine(str);
+            if (str.Contains("15"))
+                return 15;
+            else if (str.Contains("14"))
+                return 14;
+            else if (str.Contains("13"))
+                return 13;
+            else if (str.Contains("12"))
+                return 12;
+            else if (str.Contains("11"))
+                return 11;
+            else if (str.Contains("10"))
+                return 10;
+            else if (str.Contains("9"))
+                return 9;
+            else if (str.Contains("8"))
+                return 8;
+            else if (str.Contains("7"))
+                return 7;
+            else if (str.Contains("6"))
+                return 6;
+            else if (str.Contains("5"))
+                return 5;
+            else if (str.Contains("4"))
+                return 4;
+            else if (str.Contains("3"))
+                return 3;
+            else if (str.Contains("2"))
+                return 2;
+            else if (str.Contains("1"))
+                return 1;
+            else
+                return 0;
+        }
+
+        private void SoundModeCombo_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+
+        }
+
+        private void SoundModeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string Mode = ((TextBlock)SoundModeCombo.SelectedItem).Text;
+
+            if(Sounds != null)
+            {
+                for (int i = 0; i < Sounds.Length; i++)
+                {
+                    Uri uri = new Uri("ms-appx:///Assets/" + Mode + "/sound" + i + ".mp3");
+                    Sounds[i].Source = MediaSource.CreateFromUri(uri);
+                }
+            }
         }
     }
 }
