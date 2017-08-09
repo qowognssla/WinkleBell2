@@ -539,8 +539,10 @@ namespace WinkleBell2
                 {
                     DataReaderObject = new DataReader(EventHandlerForDevice.Current.Device.InputStream);
 
-                    while (isActive)
+                    while (isActive) { 
                         await ReadAsync(ReadCancellationTokenSource.Token);
+                        await Task.Delay(50);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -571,7 +573,6 @@ namespace WinkleBell2
             if (bytesRead > 0)
             {
                 var Str = DataReaderObject.ReadString(bytesRead);
-                Debug.Write(Str);
                 PlayingSound(CheckReadString(Str));
             }
         }
