@@ -104,7 +104,6 @@
                             <Button Grid.Row="1" Grid.Column="1" x:Name="ButtonConnectToDevice" Content="Connect" VerticalAlignment="Top" Margin="0,0,20,0" Click="ConnectBtn_Clicked" FontWeight="Bold" HorizontalAlignment="Center"/>
                             <Button Grid.Row="2" Grid.Column="1" x:Name="ButtonDisconnectFromDevice" Content="Disconnect" VerticalAlignment="Top" Click="DisconnectBtn_Clicked" FontWeight="Bold" HorizontalAlignment="Center"/>
                         </StackPanel>
-                        <Button  Grid.Row="5" x:Name="SetBtn" Content="Set" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Click="SetButton_Click" Margin="20" Width="150" Height="60"/>
                     </Grid>
                 </ScrollViewer>
             </PivotItem>

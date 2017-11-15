@@ -541,7 +541,6 @@ namespace WinkleBell2
 
                     while (isActive) { 
                         await ReadAsync(ReadCancellationTokenSource.Token);
-                        await Task.Delay(50);
                     }
                 }
                 catch (Exception exception)
@@ -573,6 +572,7 @@ namespace WinkleBell2
             if (bytesRead > 0)
             {
                 var Str = DataReaderObject.ReadString(bytesRead);
+                Debug.Write(Str);
                 PlayingSound(CheckReadString(Str));
             }
         }
@@ -712,7 +712,7 @@ namespace WinkleBell2
                 return 2;
             else if (str.Contains("1"))
                 return 1;
-            else
+            else if (str.Contains("0"))
                 return 0;
         }
 
