@@ -209,8 +209,11 @@ namespace WinkleBell2
         {
             try
             {
-                Sounds[Index].PlaybackSession.Position = new TimeSpan(0);
-                Sounds[Index].Play();
+                if(Index >= 0)
+                {
+                    Sounds[Index].PlaybackSession.Position = new TimeSpan(0);
+                    Sounds[Index].Play();
+                }
             }
             catch (Exception ex)
             {
@@ -714,6 +717,8 @@ namespace WinkleBell2
                 return 1;
             else if (str.Contains("0"))
                 return 0;
+            else
+                return -1;
         }
 
         private void SoundModeCombo_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
